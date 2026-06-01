@@ -1,0 +1,88 @@
+// ---- fonction Calculatrice.somme ----
+function Calculatrice.somme 2
+push constant 0
+pop local 0
+push constant 1
+pop local 1
+label FS_L0
+push local 1
+push argument 0
+lt
+not
+if-goto FS_L1
+push local 0
+push local 1
+add
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto FS_L0
+label FS_L1
+push local 0
+push argument 0
+add
+pop local 0
+push local 0
+return
+// ---- fonction Calculatrice.maximum ----
+function Calculatrice.maximum 0
+push argument 0
+push argument 1
+gt
+not
+if-goto FS_L2
+push argument 0
+return
+goto FS_L3
+label FS_L2
+push argument 1
+return
+label FS_L3
+// ---- fonction Calculatrice.factorielle ----
+function Calculatrice.factorielle 0
+push argument 0
+push constant 2
+lt
+not
+if-goto FS_L4
+push constant 1
+return
+goto FS_L5
+label FS_L4
+label FS_L5
+push argument 0
+push argument 0
+push constant 1
+sub
+call Calculatrice.factorielle 1
+call Math.multiply 2
+return
+// ---- fonction Calculatrice.principale ----
+function Calculatrice.principale 3
+push constant 10
+call Calculatrice.somme 1
+pop local 0
+push constant 42
+push constant 17
+call Calculatrice.maximum 2
+pop local 1
+push constant 5
+call Calculatrice.factorielle 1
+pop local 2
+push static 0
+push constant 1
+add
+pop static 0
+push local 0
+call Sortie.imprimerEntier 1
+pop temp 0
+push local 1
+call Sortie.imprimerEntier 1
+pop temp 0
+push local 2
+call Sortie.imprimerEntier 1
+pop temp 0
+push constant 0
+return
